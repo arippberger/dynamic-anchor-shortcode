@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name: Dynamic Anchor Shortcode
- * Plugin URI: https://github.com/arippberger/dns-lorem-ipsum-generator
- * Description: Adds lorem ipsum text via the [dns-ipsum] shortcode and a TinyMCE button 
+ * Plugin URI: https://github.com/arippberger/dynamic-anchor-shortcode/
+ * Description: Adds an HTML anchor shortcode which can be passed a post/page ID for dynamic links.
  * Version: 1.1
  * Author: arippberger, duenorthstudios
  * Author URI: http://DueNorthStudios.com
