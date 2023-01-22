@@ -31,7 +31,7 @@ class dynamicAnchorShortcode {
 
 	public function html_anchor($atts) {
 		
-		//extract attributes and set default values
+		// extract attributes and set default values
 		extract( shortcode_atts( array(
 			'class' => '',
 			'id' => '',
@@ -45,10 +45,10 @@ class dynamicAnchorShortcode {
 			'style' => $style		
 		), $atts ) );
 
-		$anchor_attributes = array( //give attributes nice key/value pairs
-			'class'=>$class, 
-			'id'=>$id, 
-			'href'=>$href, 
+		$anchor_attributes = array( // give attributes nice key/value pairs
+			'class' => $class, 
+			'id' => $id, 
+			'href' => $href, 
 			'target' => $target,	
 			'rel' => $rel,
 			'hreflang' => $hreflang, 
@@ -58,17 +58,13 @@ class dynamicAnchorShortcode {
 		); 
 
 		$sanitized_attributes = '';
-		$pid = intval($pid); //convert post/page id to integer
-		if (!empty($pid) && is_int($pid)) { //if the post id isn't empty make it's URL the href - overrides href attribute, if any
+		$pid = intval($pid); // convert post/page id to integer
+		if (!empty($pid) && is_int($pid)) { // if the post id isn't empty make it's URL the href - overrides href attribute, if any
 			$anchor_attributes['href'] =  get_permalink( $pid );
 		}
-		foreach ($anchor_attributes as $attribute_key => $attribute) { //loop through attributes
-			//var_dump($attribute);
-			if ($attribute_key == 'href') {
-				$attribute = esc_url($attribute);
-			} else {
-				$attribute = esc_attr( $attribute ); //sanitize
-			}
+		foreach ($anchor_attributes as $attribute_key => $attribute) { // loop through attributes
+			$attribute = $attribute_key === 'href' ? esc_url($attribute) : esc_attr($attribute);
+			
 			if (!empty($attribute) && is_string($attribute)) {
 				$sanitized_attributes .= $attribute_key . '="' . $attribute . '" '; 
 			}
@@ -77,10 +73,6 @@ class dynamicAnchorShortcode {
 	    $return .= '</a>';
 	    return $return;
 	}    
-     
-
 }
  
 $dynamicAnchorShortcode = new dynamicAnchorShortcode();
-
-?>
